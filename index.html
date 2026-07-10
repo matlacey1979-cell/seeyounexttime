@@ -823,6 +823,123 @@
   <div class="trust-item"><div class="trust-dot"></div>No accountant needed</div>
 </div>
 
+<!-- TOUR -->
+<section style="padding:96px 40px;background:var(--bg);">
+  <div style="max-width:900px;margin:0 auto;">
+    <div style="text-align:center;margin-bottom:48px;">
+      <div class="section-eyebrow" style="text-align:center;">App tour</div>
+      <h2 class="section-title" style="margin:0 auto;text-align:center;">See how it works</h2>
+    </div>
+
+    <div style="position:relative;">
+      <!-- slides -->
+      <div id="tour-track" style="overflow:hidden;border-radius:20px;">
+        <div id="tour-inner" style="display:flex;transition:transform 0.4s cubic-bezier(.4,0,.2,1);">
+
+          <div class="tour-slide" style="background:#EFF6FF;">
+            <div class="tour-emoji">🌿</div>
+            <h3 class="tour-title" style="color:#2563EB;">Welcome to Wattle</h3>
+            <p class="tour-body">The support worker app built for the NDIS. Everything you need, in one place.</p>
+          </div>
+
+          <div class="tour-slide" style="background:#F0FDF4;">
+            <div class="tour-emoji">⏱️</div>
+            <h3 class="tour-title" style="color:#16A34A;">Track Your Shifts</h3>
+            <p class="tour-body">Clock on and off with a tap. Log visit notes, mileage, and participant signatures as you go.</p>
+          </div>
+
+          <div class="tour-slide" style="background:#FFF7ED;">
+            <div class="tour-emoji">👤</div>
+            <h3 class="tour-title" style="color:#EA580C;">Manage Participants</h3>
+            <p class="tour-body">Store profiles, NDIS goals, emergency contacts, and health details — all securely encrypted.</p>
+          </div>
+
+          <div class="tour-slide" style="background:#FDF4FF;">
+            <div class="tour-emoji">🧾</div>
+            <h3 class="tour-title" style="color:#9333EA;">Invoice in Seconds</h3>
+            <p class="tour-body">Create NDIS-compliant invoices for any support category, including STA and remote loadings. Email them as PDFs straight from the app.</p>
+          </div>
+
+          <div class="tour-slide" style="background:#FFFBEB;">
+            <div class="tour-emoji">📋</div>
+            <h3 class="tour-title" style="color:#D97706;">Stay Compliant</h3>
+            <p class="tour-body">Track your certifications, renewals, and policy documents. Never let a credential lapse again.</p>
+          </div>
+
+          <div class="tour-slide" style="background:#EFF6FF;">
+            <div class="tour-emoji">🚀</div>
+            <h3 class="tour-title" style="color:#2563EB;">You're Ready</h3>
+            <p class="tour-body">Create your free account to get started. Your data is private, encrypted, and stays yours.</p>
+            <a href="#" class="btn-primary" style="margin-top:24px;display:inline-flex;">Download on App Store</a>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- prev / next -->
+      <button onclick="tourNav(-1)" id="tour-prev" style="position:absolute;left:-20px;top:50%;transform:translateY(-50%);width:44px;height:44px;border-radius:22px;border:none;background:var(--surface);box-shadow:0 2px 12px rgba(0,0,0,0.12);cursor:pointer;font-size:20px;display:flex;align-items:center;justify-content:center;opacity:0.4;">‹</button>
+      <button onclick="tourNav(1)" id="tour-next" style="position:absolute;right:-20px;top:50%;transform:translateY(-50%);width:44px;height:44px;border-radius:22px;border:none;background:var(--surface);box-shadow:0 2px 12px rgba(0,0,0,0.12);cursor:pointer;font-size:20px;display:flex;align-items:center;justify-content:center;">›</button>
+    </div>
+
+    <!-- dots -->
+    <div id="tour-dots" style="display:flex;justify-content:center;gap:8px;margin-top:24px;"></div>
+  </div>
+</section>
+
+<style>
+  .tour-slide {
+    min-width:100%;
+    padding:56px 48px;
+    text-align:center;
+    border-radius:20px;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+  }
+  .tour-emoji { font-size:64px;margin-bottom:20px;line-height:1; }
+  .tour-title { font-family:Georgia,serif;font-size:clamp(22px,3vw,32px);font-weight:700;margin-bottom:16px;letter-spacing:-0.5px; }
+  .tour-body { font-size:17px;color:var(--text-mid);max-width:500px;line-height:1.65; }
+  @media(max-width:640px){
+    .tour-slide{padding:40px 24px;}
+    .tour-body{font-size:15px;}
+  }
+</style>
+
+<script>
+  (function(){
+    var current = 0;
+    var total = 6;
+    var inner = document.getElementById('tour-inner');
+    var dotsEl = document.getElementById('tour-dots');
+    var prev = document.getElementById('tour-prev');
+    var next = document.getElementById('tour-next');
+
+    // build dots
+    for(var i=0;i<total;i++){
+      var d=document.createElement('div');
+      d.style.cssText='width:8px;height:8px;border-radius:4px;background:#CBD5E0;transition:all 0.25s;cursor:pointer;';
+      d.setAttribute('data-i',i);
+      d.onclick=function(){goTo(+this.getAttribute('data-i'));};
+      dotsEl.appendChild(d);
+    }
+
+    function goTo(n){
+      current=Math.max(0,Math.min(total-1,n));
+      inner.style.transform='translateX(-'+current*100+'%)';
+      var dots=dotsEl.children;
+      for(var i=0;i<dots.length;i++){
+        dots[i].style.background=i===current?'var(--blue)':'#CBD5E0';
+        dots[i].style.width=i===current?'24px':'8px';
+      }
+      prev.style.opacity=current===0?'0.3':'1';
+      next.style.opacity=current===total-1?'0.3':'1';
+    }
+
+    window.tourNav=function(dir){goTo(current+dir);};
+    goTo(0);
+  })();
+</script>
+
 <!-- FEATURES -->
 <section class="section" id="features">
   <div class="section-eyebrow">Built for the work you do</div>
