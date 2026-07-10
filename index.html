@@ -1,0 +1,961 @@
+
+<title>Wattle — Dedicated NDIS Sole Trader App</title>
+<style>
+  :root {
+    --navy: #1E3A6E;
+    --navy-mid: #254680;
+    --gold: #F5A623;
+    --gold-light: #FEF3DC;
+    --blue: #2563EB;
+    --blue-light: #EFF6FF;
+    --bg: #F8FAFF;
+    --surface: #FFFFFF;
+    --text: #0C1A3A;
+    --text-mid: #4A5568;
+    --text-light: #718096;
+    --border: #E2E8F0;
+    --success: #16A34A;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #080F20;
+      --surface: #0F1A35;
+      --text: #F0F4FF;
+      --text-mid: #A0AEC0;
+      --text-light: #718096;
+      --border: #1E2D52;
+      --blue-light: #1E3A8A22;
+      --gold-light: #F5A62318;
+    }
+  }
+
+  :root[data-theme="light"] {
+    --bg: #F8FAFF;
+    --surface: #FFFFFF;
+    --text: #0C1A3A;
+    --text-mid: #4A5568;
+    --text-light: #718096;
+    --border: #E2E8F0;
+    --blue-light: #EFF6FF;
+    --gold-light: #FEF3DC;
+  }
+
+  :root[data-theme="dark"] {
+    --bg: #080F20;
+    --surface: #0F1A35;
+    --text: #F0F4FF;
+    --text-mid: #A0AEC0;
+    --text-light: #718096;
+    --border: #1E2D52;
+    --blue-light: #1E3A8A22;
+    --gold-light: #F5A62318;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    background: var(--navy);
+    border-bottom: 1px solid rgba(245,166,35,0.15);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 40px;
+    height: 64px;
+  }
+
+  .nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+  }
+
+  .nav-logo-mark {
+    width: 32px;
+    height: 32px;
+    background: var(--gold);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    font-weight: 800;
+    color: var(--navy);
+    font-family: Georgia, 'Times New Roman', serif;
+    letter-spacing: -1px;
+  }
+
+  .nav-logo-text {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: #fff;
+    letter-spacing: -0.3px;
+  }
+
+  .nav-cta {
+    background: var(--gold);
+    color: var(--navy);
+    font-weight: 700;
+    font-size: 14px;
+    padding: 10px 22px;
+    border-radius: 8px;
+    text-decoration: none;
+    letter-spacing: 0.2px;
+    transition: opacity 0.15s;
+  }
+
+  .nav-cta:hover { opacity: 0.88; }
+
+  /* HERO */
+  .hero {
+    background: var(--navy);
+    padding: 140px 40px 100px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -120px; left: 50%;
+    transform: translateX(-50%);
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(245,166,35,0.08) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .hero-eyebrow {
+    display: inline-block;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 1.8px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 24px;
+    border: 1px solid rgba(245,166,35,0.3);
+    padding: 6px 14px;
+    border-radius: 4px;
+  }
+
+  .hero h1 {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: clamp(38px, 6vw, 72px);
+    font-weight: 700;
+    color: #fff;
+    line-height: 1.1;
+    letter-spacing: -1.5px;
+    text-wrap: balance;
+    max-width: 800px;
+    margin: 0 auto 24px;
+  }
+
+  .hero h1 em {
+    font-style: normal;
+    color: var(--gold);
+  }
+
+  .hero-sub {
+    font-size: clamp(16px, 2vw, 19px);
+    color: rgba(255,255,255,0.65);
+    max-width: 520px;
+    margin: 0 auto 40px;
+    line-height: 1.6;
+  }
+
+  .hero-actions {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    flex-wrap: wrap;
+    margin-bottom: 72px;
+  }
+
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--gold);
+    color: var(--navy);
+    font-weight: 700;
+    font-size: 16px;
+    padding: 16px 32px;
+    border-radius: 10px;
+    text-decoration: none;
+    transition: transform 0.15s, opacity 0.15s;
+  }
+
+  .btn-primary:hover { transform: translateY(-1px); opacity: 0.92; }
+
+  .btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: rgba(255,255,255,0.75);
+    font-size: 15px;
+    font-weight: 500;
+    text-decoration: none;
+    padding: 16px 20px;
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 10px;
+    transition: border-color 0.15s, color 0.15s;
+  }
+
+  .btn-secondary:hover { border-color: rgba(255,255,255,0.35); color: #fff; }
+
+  /* PHONE MOCKUP */
+  .phone-wrap {
+    display: flex;
+    justify-content: center;
+  }
+
+  .phone {
+    width: 220px;
+    height: 440px;
+    background: #162d56;
+    border: 2px solid rgba(255,255,255,0.12);
+    border-radius: 36px;
+    padding: 20px 14px;
+    position: relative;
+    box-shadow: 0 40px 80px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.04);
+  }
+
+  .phone-notch {
+    width: 60px; height: 18px;
+    background: #162d56;
+    border: 2px solid rgba(255,255,255,0.12);
+    border-radius: 12px;
+    margin: 0 auto 12px;
+  }
+
+  .phone-screen {
+    background: #F8FAFF;
+    border-radius: 20px;
+    height: calc(100% - 34px);
+    overflow: hidden;
+    padding: 10px 8px;
+  }
+
+  .ps-header {
+    background: #2563EB;
+    border-radius: 10px;
+    padding: 8px 10px;
+    margin-bottom: 8px;
+  }
+
+  .ps-header-label { font-size: 7px; color: rgba(255,255,255,0.7); font-weight: 600; letter-spacing: 0.5px; text-transform: uppercase; }
+  .ps-header-name { font-size: 12px; color: #fff; font-weight: 700; margin-top: 2px; }
+
+  .ps-stat-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5px;
+    margin-bottom: 8px;
+  }
+
+  .ps-stat {
+    background: #fff;
+    border-radius: 8px;
+    padding: 7px 8px;
+    border-left: 3px solid var(--blue);
+  }
+
+  .ps-stat:nth-child(2) { border-left-color: #16A34A; }
+
+  .ps-stat-val { font-size: 14px; font-weight: 700; color: #0C1A3A; }
+  .ps-stat-label { font-size: 6px; color: #718096; font-weight: 500; margin-top: 1px; }
+
+  .ps-section-label {
+    font-size: 7px;
+    font-weight: 700;
+    color: #4A5568;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    margin-bottom: 5px;
+  }
+
+  .ps-card {
+    background: #fff;
+    border-radius: 8px;
+    padding: 7px 8px;
+    margin-bottom: 5px;
+    border-left: 3px solid #2563EB;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .ps-card-name { font-size: 8px; font-weight: 600; color: #0C1A3A; }
+  .ps-card-sub { font-size: 6px; color: #718096; margin-top: 1px; }
+
+  .ps-badge {
+    font-size: 6px;
+    font-weight: 700;
+    padding: 2px 5px;
+    border-radius: 4px;
+    background: #EFF6FF;
+    color: #2563EB;
+  }
+
+  /* TRUST BAR */
+  .trust-bar {
+    background: rgba(245,166,35,0.06);
+    border-top: 1px solid rgba(245,166,35,0.12);
+    border-bottom: 1px solid rgba(245,166,35,0.12);
+    padding: 20px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 48px;
+    flex-wrap: wrap;
+  }
+
+  .trust-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: rgba(255,255,255,0.6);
+    font-size: 13px;
+    font-weight: 500;
+  }
+
+  .trust-dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--gold);
+    flex-shrink: 0;
+  }
+
+  /* FEATURES */
+  .section {
+    padding: 96px 40px;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .section-eyebrow {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 1.8px;
+    text-transform: uppercase;
+    color: var(--blue);
+    margin-bottom: 16px;
+  }
+
+  .section-title {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: clamp(28px, 4vw, 44px);
+    font-weight: 700;
+    color: var(--text);
+    letter-spacing: -0.8px;
+    line-height: 1.15;
+    text-wrap: balance;
+    max-width: 560px;
+    margin-bottom: 56px;
+  }
+
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 24px;
+  }
+
+  .feature-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 28px;
+    transition: transform 0.15s, box-shadow 0.15s;
+  }
+
+  .feature-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(37,99,235,0.08);
+  }
+
+  .feature-icon {
+    width: 44px; height: 44px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    margin-bottom: 16px;
+    background: var(--blue-light);
+  }
+
+  .feature-card:nth-child(2) .feature-icon { background: #F0FDF4; }
+  .feature-card:nth-child(3) .feature-icon { background: var(--gold-light); }
+  .feature-card:nth-child(4) .feature-icon { background: #F5F3FF; }
+  .feature-card:nth-child(5) .feature-icon { background: #F0FDFA; }
+  .feature-card:nth-child(6) .feature-icon { background: #FFF7ED; }
+
+  .feature-title {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 8px;
+    letter-spacing: -0.2px;
+  }
+
+  .feature-desc {
+    font-size: 14px;
+    color: var(--text-mid);
+    line-height: 1.65;
+  }
+
+  /* PRICING */
+  .pricing-section {
+    background: var(--navy);
+    padding: 96px 40px;
+  }
+
+  .pricing-inner {
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+
+  .pricing-header {
+    text-align: center;
+    margin-bottom: 56px;
+  }
+
+  .pricing-eyebrow {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 1.8px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 16px;
+  }
+
+  .pricing-title {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: clamp(28px, 4vw, 44px);
+    font-weight: 700;
+    color: #fff;
+    letter-spacing: -0.8px;
+    line-height: 1.15;
+    margin-bottom: 16px;
+  }
+
+  .pricing-sub {
+    color: rgba(255,255,255,0.55);
+    font-size: 16px;
+    max-width: 420px;
+    margin: 0 auto;
+  }
+
+  .pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 20px;
+  }
+
+  .pricing-card {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 16px;
+    padding: 32px 28px;
+    position: relative;
+    transition: border-color 0.15s;
+  }
+
+  .pricing-card:hover { border-color: rgba(245,166,35,0.3); }
+
+  .pricing-card.featured {
+    background: rgba(245,166,35,0.06);
+    border-color: rgba(245,166,35,0.4);
+  }
+
+  .pricing-badge {
+    position: absolute;
+    top: -12px; left: 50%;
+    transform: translateX(-50%);
+    background: var(--gold);
+    color: var(--navy);
+    font-size: 11px;
+    font-weight: 700;
+    padding: 4px 14px;
+    border-radius: 20px;
+    letter-spacing: 0.3px;
+    white-space: nowrap;
+  }
+
+  .pricing-tier {
+    font-size: 13px;
+    font-weight: 600;
+    color: rgba(255,255,255,0.5);
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    margin-bottom: 12px;
+  }
+
+  .pricing-participants {
+    font-size: 14px;
+    color: var(--gold);
+    font-weight: 600;
+    margin-bottom: 20px;
+  }
+
+  .pricing-price {
+    display: flex;
+    align-items: baseline;
+    gap: 4px;
+    margin-bottom: 6px;
+  }
+
+  .price-dollar { font-size: 20px; color: rgba(255,255,255,0.7); font-weight: 600; margin-top: 4px; }
+  .price-amount { font-family: Georgia, serif; font-size: 52px; font-weight: 700; color: #fff; letter-spacing: -2px; font-variant-numeric: tabular-nums; }
+  .price-period { font-size: 14px; color: rgba(255,255,255,0.4); }
+
+  .pricing-trial {
+    font-size: 13px;
+    color: rgba(255,255,255,0.4);
+    margin-bottom: 28px;
+  }
+
+  .pricing-divider {
+    height: 1px;
+    background: rgba(255,255,255,0.08);
+    margin-bottom: 24px;
+  }
+
+  .pricing-features {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 32px;
+  }
+
+  .pricing-features li {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 14px;
+    color: rgba(255,255,255,0.7);
+    line-height: 1.4;
+  }
+
+  .check {
+    color: var(--gold);
+    font-size: 14px;
+    font-weight: 700;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  .pricing-btn {
+    display: block;
+    text-align: center;
+    padding: 14px;
+    border-radius: 10px;
+    font-weight: 700;
+    font-size: 15px;
+    text-decoration: none;
+    border: 1px solid rgba(255,255,255,0.2);
+    color: rgba(255,255,255,0.8);
+    transition: border-color 0.15s, color 0.15s;
+  }
+
+  .pricing-btn:hover { border-color: rgba(255,255,255,0.5); color: #fff; }
+
+  .pricing-card.featured .pricing-btn {
+    background: var(--gold);
+    color: var(--navy);
+    border-color: var(--gold);
+  }
+
+  .pricing-card.featured .pricing-btn:hover { opacity: 0.9; }
+
+  /* CTA STRIP */
+  .cta-strip {
+    padding: 96px 40px;
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto;
+  }
+
+  .cta-strip h2 {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: clamp(28px, 4vw, 42px);
+    font-weight: 700;
+    color: var(--text);
+    letter-spacing: -0.8px;
+    text-wrap: balance;
+    margin-bottom: 16px;
+  }
+
+  .cta-strip p {
+    color: var(--text-mid);
+    font-size: 17px;
+    margin-bottom: 36px;
+    line-height: 1.6;
+  }
+
+  /* FOOTER */
+  footer {
+    background: var(--navy);
+    padding: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 20px;
+    border-top: 1px solid rgba(255,255,255,0.06);
+  }
+
+  .footer-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+  }
+
+  .footer-logo-mark {
+    width: 28px; height: 28px;
+    background: var(--gold);
+    border-radius: 7px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: Georgia, serif;
+    font-size: 15px;
+    font-weight: 800;
+    color: var(--navy);
+    letter-spacing: -1px;
+  }
+
+  .footer-logo-text {
+    font-family: Georgia, serif;
+    font-size: 17px;
+    font-weight: 700;
+    color: #fff;
+  }
+
+  .footer-links {
+    display: flex;
+    gap: 28px;
+    flex-wrap: wrap;
+  }
+
+  .footer-links a {
+    font-size: 13px;
+    color: rgba(255,255,255,0.4);
+    text-decoration: none;
+    transition: color 0.15s;
+  }
+
+  .footer-links a:hover { color: rgba(255,255,255,0.75); }
+
+  .footer-copy {
+    font-size: 12px;
+    color: rgba(255,255,255,0.25);
+  }
+
+  @media (max-width: 640px) {
+    nav { padding: 0 20px; }
+    .hero { padding: 120px 20px 80px; }
+    .trust-bar { gap: 24px; padding: 20px; }
+    .section { padding: 64px 20px; }
+    .pricing-section { padding: 64px 20px; }
+    footer { padding: 32px 20px; flex-direction: column; align-items: flex-start; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { transition: none !important; }
+  }
+</style>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">
+    <div class="nav-logo-mark">W</div>
+    <span class="nav-logo-text">Wattle</span>
+  </a>
+  <a href="#pricing" class="nav-cta">Start free trial</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-eyebrow">iOS App — Available now</div>
+  <h1>The <em>dedicated</em> app for NDIS sole traders</h1>
+  <p class="hero-sub">Clock shifts, manage participants, generate invoices and stay compliant — built for support workers, not accountants.</p>
+  <div class="hero-actions">
+    <a href="#" class="btn-primary">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+      Download on App Store
+    </a>
+    <a href="#features" class="btn-secondary">See what's inside →</a>
+  </div>
+
+  <div class="phone-wrap">
+    <div class="phone">
+      <div class="phone-notch"></div>
+      <div class="phone-screen">
+
+        <!-- status bar -->
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;padding:0 2px;">
+          <span style="font-size:7px;font-weight:700;color:#111;">2:29</span>
+          <span style="font-size:7px;color:#111;">▲▲ ◀ 61%</span>
+        </div>
+
+        <!-- greeting -->
+        <div style="display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:8px;">
+          <div>
+            <div style="font-size:7px;color:#6B7280;">Good afternoon,</div>
+            <div style="font-size:12px;font-weight:800;color:#111;">Mat 👋</div>
+          </div>
+          <div style="width:20px;height:20px;border-radius:10px;background:#EFF6FF;display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:700;color:#2563EB;">M</div>
+        </div>
+
+        <!-- clock on -->
+        <div style="background:#16A34A;border-radius:10px;padding:8px;text-align:center;margin-bottom:8px;">
+          <span style="font-size:10px;font-weight:700;color:#fff;">▶ Clock on</span>
+        </div>
+
+        <!-- stat cards -->
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:5px;margin-bottom:8px;">
+          <div style="background:#EFF6FF;border-radius:8px;padding:7px;">
+            <div style="font-size:16px;font-weight:800;color:#2563EB;">6</div>
+            <div style="font-size:6px;color:#2563EB;font-weight:600;margin-top:1px;">Shifts this week</div>
+            <div style="font-size:5px;color:#93C5FD;margin-top:2px;">Tap to view →</div>
+          </div>
+          <div style="background:#F0FDF4;border-radius:8px;padding:7px;">
+            <div style="font-size:16px;font-weight:800;color:#16A34A;">31.4</div>
+            <div style="font-size:6px;color:#16A34A;font-weight:600;margin-top:1px;">Hours this week</div>
+          </div>
+          <div style="background:#FFFBEB;border-radius:8px;padding:7px;">
+            <div style="font-size:16px;font-weight:800;color:#D97706;">1</div>
+            <div style="font-size:6px;color:#D97706;font-weight:600;margin-top:1px;">Active participants</div>
+            <div style="font-size:5px;color:#FCD34D;margin-top:2px;">Tap to view →</div>
+          </div>
+          <div style="background:#FEF2F2;border-radius:8px;padding:7px;">
+            <div style="font-size:16px;font-weight:800;color:#DC2626;">2</div>
+            <div style="font-size:6px;color:#DC2626;font-weight:600;margin-top:1px;">Draft invoices</div>
+            <div style="font-size:5px;color:#FCA5A5;margin-top:2px;">Tap to view →</div>
+          </div>
+        </div>
+
+        <!-- quick actions -->
+        <div style="font-size:7px;font-weight:700;color:#111;margin-bottom:5px;">Quick actions</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:4px;">
+          <div style="background:#EFF6FF;border-radius:7px;padding:6px 3px;text-align:center;">
+            <div style="font-size:12px;margin-bottom:2px;">📋</div>
+            <div style="font-size:5.5px;font-weight:700;color:#2563EB;">Log shift</div>
+          </div>
+          <div style="background:#F0FDF4;border-radius:7px;padding:6px 3px;text-align:center;">
+            <div style="font-size:12px;margin-bottom:2px;">👤</div>
+            <div style="font-size:5.5px;font-weight:700;color:#16A34A;">Add participant</div>
+          </div>
+          <div style="background:#FFFBEB;border-radius:7px;padding:6px 3px;text-align:center;">
+            <div style="font-size:12px;margin-bottom:2px;">💰</div>
+            <div style="font-size:5.5px;font-weight:700;color:#D97706;">New invoice</div>
+          </div>
+          <div style="background:#F0FDF4;border-radius:7px;padding:6px 3px;text-align:center;">
+            <div style="font-size:12px;margin-bottom:2px;">✅</div>
+            <div style="font-size:5.5px;font-weight:700;color:#16A34A;">Compliance</div>
+          </div>
+          <div style="background:#F5F3FF;border-radius:7px;padding:6px 3px;text-align:center;">
+            <div style="font-size:12px;margin-bottom:2px;">📤</div>
+            <div style="font-size:5.5px;font-weight:700;color:#7C3AED;">Audit pack</div>
+          </div>
+          <div style="background:#FFF7ED;border-radius:7px;padding:6px 3px;text-align:center;">
+            <div style="font-size:12px;margin-bottom:2px;">🧾</div>
+            <div style="font-size:5.5px;font-weight:700;color:#C2410C;">Expenses</div>
+          </div>
+          <div style="background:#EFF6FF;border-radius:7px;padding:6px 3px;text-align:center;">
+            <div style="font-size:12px;margin-bottom:2px;">📅</div>
+            <div style="font-size:5.5px;font-weight:700;color:#2563EB;">Calendar</div>
+          </div>
+          <div style="background:#F0FDF4;border-radius:7px;padding:6px 3px;text-align:center;">
+            <div style="font-size:12px;margin-bottom:2px;">👥</div>
+            <div style="font-size:5.5px;font-weight:700;color:#16A34A;">Participants</div>
+          </div>
+          <div style="background:#FFFBEB;border-radius:7px;padding:6px 3px;text-align:center;">
+            <div style="font-size:12px;margin-bottom:2px;">📊</div>
+            <div style="font-size:5.5px;font-weight:700;color:#D97706;">Revenue</div>
+          </div>
+        </div>
+
+        <!-- bottom bar -->
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-top:8px;padding-top:6px;border-top:1px solid #E5E7EB;">
+          <div style="text-align:center;width:36px;">
+            <div style="font-size:10px;color:#DC2626;">?</div>
+            <div style="font-size:5px;color:#9CA3AF;">Help</div>
+          </div>
+          <div style="background:#2563EB;border-radius:16px;padding:5px 14px;text-align:center;">
+            <div style="font-size:10px;">🏠</div>
+            <div style="font-size:5px;color:#fff;font-weight:700;">Home</div>
+          </div>
+          <div style="text-align:center;width:36px;">
+            <div style="font-size:10px;">🔒</div>
+            <div style="font-size:5px;color:#9CA3AF;">Privacy</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST BAR -->
+<div class="trust-bar" style="background:var(--navy);">
+  <div class="trust-item"><div class="trust-dot"></div>NDIS 2026–27 pricing built in</div>
+  <div class="trust-item"><div class="trust-dot"></div>Face ID protected</div>
+  <div class="trust-item"><div class="trust-dot"></div>Audit-ready reports</div>
+  <div class="trust-item"><div class="trust-dot"></div>No accountant needed</div>
+</div>
+
+<!-- FEATURES -->
+<section class="section" id="features">
+  <div class="section-eyebrow">Built for the work you do</div>
+  <h2 class="section-title">Everything a sole trader needs, nothing they don't</h2>
+  <div class="features-grid">
+    <div class="feature-card">
+      <div class="feature-icon">🕐</div>
+      <div class="feature-title">Clock on & off shifts</div>
+      <div class="feature-desc">Start and end shifts with a tap. Elapsed time tracks in real time. Overnight and sleepover shifts handled automatically.</div>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">👥</div>
+      <div class="feature-title">Participant management</div>
+      <div class="feature-desc">Store participant details, NDIS numbers, emergency contacts and support goals in one secure place.</div>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">🧾</div>
+      <div class="feature-title">Invoice generation</div>
+      <div class="feature-desc">Generate NDIS-compliant invoices with correct support item codes and 2026–27 pricing. Email them directly from the app.</div>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">📋</div>
+      <div class="feature-title">Incident & risk register</div>
+      <div class="feature-desc">Log incidents, complaints and risks as they happen. Exportable reports keep you audit-ready at any time.</div>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">✅</div>
+      <div class="feature-title">Compliance & certifications</div>
+      <div class="feature-desc">Track NDIS Worker Screening, First Aid, Police Checks, Driver's Licence and more. Get alerted before they expire.</div>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">📊</div>
+      <div class="feature-title">Revenue & expenses</div>
+      <div class="feature-desc">See your earnings at a glance, track business expenses and keep receipts — all in one place for tax time.</div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="pricing-section" id="pricing">
+  <div class="pricing-inner">
+    <div class="pricing-header">
+      <div class="pricing-eyebrow">Simple pricing</div>
+      <h2 class="pricing-title">Grows with your caseload</h2>
+      <p class="pricing-sub">30-day free trial, no credit card required. Cancel any time.</p>
+    </div>
+    <div class="pricing-grid">
+
+      <div class="pricing-card">
+        <div class="pricing-tier">Starter</div>
+        <div class="pricing-participants">1–3 participants</div>
+        <div class="pricing-price">
+          <span class="price-dollar">$</span>
+          <span class="price-amount">10</span>
+          <span class="price-period">/mo</span>
+        </div>
+        <div class="pricing-trial">After 30-day free trial</div>
+        <div class="pricing-divider"></div>
+        <ul class="pricing-features">
+          <li><span class="check">✓</span> Shift logging & clock on/off</li>
+          <li><span class="check">✓</span> Up to 3 active participants</li>
+          <li><span class="check">✓</span> Invoice generation</li>
+          <li><span class="check">✓</span> Compliance tracker</li>
+          <li><span class="check">✓</span> Incident register</li>
+        </ul>
+        <a href="#" class="pricing-btn">Start free trial</a>
+      </div>
+
+      <div class="pricing-card featured">
+        <div class="pricing-badge">Most popular</div>
+        <div class="pricing-tier">Growth</div>
+        <div class="pricing-participants">4–6 participants</div>
+        <div class="pricing-price">
+          <span class="price-dollar">$</span>
+          <span class="price-amount">20</span>
+          <span class="price-period">/mo</span>
+        </div>
+        <div class="pricing-trial">After 30-day free trial</div>
+        <div class="pricing-divider"></div>
+        <ul class="pricing-features">
+          <li><span class="check">✓</span> Everything in Starter</li>
+          <li><span class="check">✓</span> Up to 6 active participants</li>
+          <li><span class="check">✓</span> Revenue & expense tracking</li>
+          <li><span class="check">✓</span> Calendar view</li>
+          <li><span class="check">✓</span> Audit pack export</li>
+        </ul>
+        <a href="#" class="pricing-btn">Start free trial</a>
+      </div>
+
+      <div class="pricing-card">
+        <div class="pricing-tier">Pro</div>
+        <div class="pricing-participants">7+ participants</div>
+        <div class="pricing-price">
+          <span class="price-dollar">$</span>
+          <span class="price-amount">30</span>
+          <span class="price-period">/mo</span>
+        </div>
+        <div class="pricing-trial">After 30-day free trial</div>
+        <div class="pricing-divider"></div>
+        <ul class="pricing-features">
+          <li><span class="check">✓</span> Everything in Growth</li>
+          <li><span class="check">✓</span> Unlimited participants</li>
+          <li><span class="check">✓</span> Group / ratio shifts</li>
+          <li><span class="check">✓</span> Priority support</li>
+          <li><span class="check">✓</span> Early access to new features</li>
+        </ul>
+        <a href="#" class="pricing-btn">Start free trial</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- CTA STRIP -->
+<div class="cta-strip">
+  <h2>Built by a support worker, for support workers</h2>
+  <p>Wattle was designed from real experience in the NDIS sector — not by a software company guessing at your needs.</p>
+  <a href="#" class="btn-primary" style="display:inline-flex; background:var(--blue); color:#fff;">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+    Download on App Store
+  </a>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <a href="#" class="footer-logo">
+    <div class="footer-logo-mark">W</div>
+    <span class="footer-logo-text">Wattle</span>
+  </a>
+  <div class="footer-links">
+    <a href="#">Privacy Policy</a>
+    <a href="#">Contact</a>
+    <a href="mailto:matlacey1979@gmail.com">Support</a>
+  </div>
+  <div class="footer-copy">© 2026 Wattle. All rights reserved.</div>
+</footer>
