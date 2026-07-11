@@ -1,58 +1,30 @@
 
 <title>Wattle — Dedicated NDIS Sole Trader App</title>
 <style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
   :root {
-    --navy: #1E3A6E;
-    --navy-mid: #254680;
-    --gold: #F5A623;
-    --gold-light: #FEF3DC;
     --blue: #2563EB;
     --blue-light: #EFF6FF;
-    --bg: #F8FAFF;
+    --green: #16A34A;
+    --green-light: #F0FDF4;
+    --amber: #D97706;
+    --amber-light: #FFFBEB;
+    --red: #DC2626;
+    --red-light: #FEF2F2;
+    --purple: #7C3AED;
+    --purple-light: #F5F3FF;
+    --teal: #0D9488;
+    --teal-light: #F0FDFA;
+    --orange: #C2410C;
+    --orange-light: #FFF7ED;
+    --bg: #F9FAFB;
     --surface: #FFFFFF;
-    --text: #0C1A3A;
-    --text-mid: #4A5568;
-    --text-light: #718096;
-    --border: #E2E8F0;
-    --success: #16A34A;
+    --text: #111827;
+    --text-mid: #6B7280;
+    --text-light: #9CA3AF;
+    --border: #E5E7EB;
   }
-
-  @media (prefers-color-scheme: dark) {
-    :root {
-      --bg: #080F20;
-      --surface: #0F1A35;
-      --text: #F0F4FF;
-      --text-mid: #A0AEC0;
-      --text-light: #718096;
-      --border: #1E2D52;
-      --blue-light: #1E3A8A22;
-      --gold-light: #F5A62318;
-    }
-  }
-
-  :root[data-theme="light"] {
-    --bg: #F8FAFF;
-    --surface: #FFFFFF;
-    --text: #0C1A3A;
-    --text-mid: #4A5568;
-    --text-light: #718096;
-    --border: #E2E8F0;
-    --blue-light: #EFF6FF;
-    --gold-light: #FEF3DC;
-  }
-
-  :root[data-theme="dark"] {
-    --bg: #080F20;
-    --surface: #0F1A35;
-    --text: #F0F4FF;
-    --text-mid: #A0AEC0;
-    --text-light: #718096;
-    --border: #1E2D52;
-    --blue-light: #1E3A8A22;
-    --gold-light: #F5A62318;
-  }
-
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
   body {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
@@ -67,13 +39,14 @@
     position: fixed;
     top: 0; left: 0; right: 0;
     z-index: 100;
-    background: var(--navy);
-    border-bottom: 1px solid rgba(245,166,35,0.15);
+    background: #fff;
+    border-bottom: 1px solid var(--border);
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding: 0 40px;
     height: 64px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.06);
   }
 
   .nav-logo {
@@ -84,37 +57,33 @@
   }
 
   .nav-logo-mark {
-    width: 32px;
-    height: 32px;
-    background: var(--gold);
-    border-radius: 8px;
+    width: 34px; height: 34px;
+    background: var(--blue);
+    border-radius: 9px;
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 18px;
     font-weight: 800;
-    color: var(--navy);
-    font-family: Georgia, 'Times New Roman', serif;
-    letter-spacing: -1px;
+    color: #fff;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
   }
 
   .nav-logo-text {
-    font-family: Georgia, 'Times New Roman', serif;
     font-size: 20px;
     font-weight: 700;
-    color: #fff;
+    color: var(--text);
     letter-spacing: -0.3px;
   }
 
   .nav-cta {
-    background: var(--gold);
-    color: var(--navy);
-    font-weight: 700;
+    background: var(--blue);
+    color: #fff;
+    font-weight: 600;
     font-size: 14px;
     padding: 10px 22px;
-    border-radius: 8px;
+    border-radius: 9px;
     text-decoration: none;
-    letter-spacing: 0.2px;
     transition: opacity 0.15s;
   }
 
@@ -122,79 +91,64 @@
 
   /* HERO */
   .hero {
-    background: var(--navy);
-    padding: 140px 40px 100px;
+    background: var(--blue-light);
+    border-bottom: 1px solid #DBEAFE;
+    padding: 120px 40px 80px;
     text-align: center;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .hero::before {
-    content: '';
-    position: absolute;
-    top: -120px; left: 50%;
-    transform: translateX(-50%);
-    width: 600px; height: 600px;
-    background: radial-gradient(circle, rgba(245,166,35,0.08) 0%, transparent 70%);
-    pointer-events: none;
   }
 
   .hero-eyebrow {
     display: inline-block;
     font-size: 12px;
     font-weight: 600;
-    letter-spacing: 1.8px;
+    letter-spacing: 1.5px;
     text-transform: uppercase;
-    color: var(--gold);
+    color: var(--blue);
+    background: #fff;
+    border: 1px solid #BFDBFE;
+    padding: 5px 14px;
+    border-radius: 20px;
     margin-bottom: 24px;
-    border: 1px solid rgba(245,166,35,0.3);
-    padding: 6px 14px;
-    border-radius: 4px;
   }
 
   .hero h1 {
-    font-family: Georgia, 'Times New Roman', serif;
-    font-size: clamp(38px, 6vw, 72px);
-    font-weight: 700;
-    color: #fff;
+    font-size: clamp(36px, 5.5vw, 64px);
+    font-weight: 800;
+    color: var(--text);
     line-height: 1.1;
     letter-spacing: -1.5px;
-    text-wrap: balance;
-    max-width: 800px;
-    margin: 0 auto 24px;
+    max-width: 720px;
+    margin: 0 auto 20px;
   }
 
-  .hero h1 em {
-    font-style: normal;
-    color: var(--gold);
-  }
+  .hero h1 span { color: var(--blue); }
 
   .hero-sub {
-    font-size: clamp(16px, 2vw, 19px);
-    color: rgba(255,255,255,0.65);
-    max-width: 520px;
-    margin: 0 auto 40px;
-    line-height: 1.6;
+    font-size: clamp(16px, 2vw, 18px);
+    color: var(--text-mid);
+    max-width: 480px;
+    margin: 0 auto 36px;
+    line-height: 1.65;
   }
 
   .hero-actions {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 16px;
+    gap: 12px;
     flex-wrap: wrap;
-    margin-bottom: 72px;
+    margin-bottom: 64px;
   }
 
   .btn-primary {
     display: inline-flex;
     align-items: center;
-    gap: 10px;
-    background: var(--gold);
-    color: var(--navy);
-    font-weight: 700;
+    gap: 8px;
+    background: var(--blue);
+    color: #fff;
+    font-weight: 600;
     font-size: 16px;
-    padding: 16px 32px;
+    padding: 14px 28px;
     border-radius: 10px;
     text-decoration: none;
     transition: transform 0.15s, opacity 0.15s;
@@ -205,123 +159,59 @@
   .btn-secondary {
     display: inline-flex;
     align-items: center;
-    gap: 8px;
-    color: rgba(255,255,255,0.75);
+    gap: 6px;
+    color: var(--text-mid);
     font-size: 15px;
     font-weight: 500;
     text-decoration: none;
-    padding: 16px 20px;
-    border: 1px solid rgba(255,255,255,0.15);
+    padding: 14px 20px;
+    border: 1px solid var(--border);
     border-radius: 10px;
+    background: #fff;
     transition: border-color 0.15s, color 0.15s;
   }
 
-  .btn-secondary:hover { border-color: rgba(255,255,255,0.35); color: #fff; }
+  .btn-secondary:hover { border-color: var(--blue); color: var(--blue); }
 
   /* PHONE MOCKUP */
-  .phone-wrap {
-    display: flex;
-    justify-content: center;
-  }
+  .phone-wrap { display: flex; justify-content: center; }
 
   .phone {
-    width: 220px;
-    height: 440px;
-    background: #162d56;
-    border: 2px solid rgba(255,255,255,0.12);
-    border-radius: 36px;
-    padding: 20px 14px;
+    width: 230px;
+    height: 460px;
+    background: #1c1c1e;
+    border-radius: 38px;
+    padding: 20px 14px 16px;
+    box-shadow: 0 32px 64px rgba(0,0,0,0.22), 0 0 0 1px rgba(255,255,255,0.06);
     position: relative;
-    box-shadow: 0 40px 80px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.04);
   }
 
   .phone-notch {
-    width: 60px; height: 18px;
-    background: #162d56;
-    border: 2px solid rgba(255,255,255,0.12);
+    width: 70px; height: 20px;
+    background: #1c1c1e;
     border-radius: 12px;
-    margin: 0 auto 12px;
+    margin: 0 auto 10px;
+    position: relative;
+    z-index: 2;
   }
 
   .phone-screen {
-    background: #F8FAFF;
-    border-radius: 20px;
-    height: calc(100% - 34px);
+    background: #F9FAFB;
+    border-radius: 24px;
+    height: calc(100% - 30px);
     overflow: hidden;
-    padding: 10px 8px;
-  }
-
-  .ps-header {
-    background: #2563EB;
-    border-radius: 10px;
-    padding: 8px 10px;
-    margin-bottom: 8px;
-  }
-
-  .ps-header-label { font-size: 7px; color: rgba(255,255,255,0.7); font-weight: 600; letter-spacing: 0.5px; text-transform: uppercase; }
-  .ps-header-name { font-size: 12px; color: #fff; font-weight: 700; margin-top: 2px; }
-
-  .ps-stat-row {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 5px;
-    margin-bottom: 8px;
-  }
-
-  .ps-stat {
-    background: #fff;
-    border-radius: 8px;
-    padding: 7px 8px;
-    border-left: 3px solid var(--blue);
-  }
-
-  .ps-stat:nth-child(2) { border-left-color: #16A34A; }
-
-  .ps-stat-val { font-size: 14px; font-weight: 700; color: #0C1A3A; }
-  .ps-stat-label { font-size: 6px; color: #718096; font-weight: 500; margin-top: 1px; }
-
-  .ps-section-label {
-    font-size: 7px;
-    font-weight: 700;
-    color: #4A5568;
-    text-transform: uppercase;
-    letter-spacing: 0.8px;
-    margin-bottom: 5px;
-  }
-
-  .ps-card {
-    background: #fff;
-    border-radius: 8px;
-    padding: 7px 8px;
-    margin-bottom: 5px;
-    border-left: 3px solid #2563EB;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-
-  .ps-card-name { font-size: 8px; font-weight: 600; color: #0C1A3A; }
-  .ps-card-sub { font-size: 6px; color: #718096; margin-top: 1px; }
-
-  .ps-badge {
-    font-size: 6px;
-    font-weight: 700;
-    padding: 2px 5px;
-    border-radius: 4px;
-    background: #EFF6FF;
-    color: #2563EB;
+    padding: 10px 8px 8px;
   }
 
   /* TRUST BAR */
   .trust-bar {
-    background: rgba(245,166,35,0.06);
-    border-top: 1px solid rgba(245,166,35,0.12);
-    border-bottom: 1px solid rgba(245,166,35,0.12);
-    padding: 20px 40px;
+    background: #fff;
+    border-bottom: 1px solid var(--border);
+    padding: 18px 40px;
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 48px;
+    gap: 40px;
     flex-wrap: wrap;
   }
 
@@ -329,21 +219,21 @@
     display: flex;
     align-items: center;
     gap: 8px;
-    color: rgba(255,255,255,0.6);
+    color: var(--text-mid);
     font-size: 13px;
     font-weight: 500;
   }
 
   .trust-dot {
-    width: 6px; height: 6px;
+    width: 7px; height: 7px;
     border-radius: 50%;
-    background: var(--gold);
+    background: var(--green);
     flex-shrink: 0;
   }
 
-  /* FEATURES */
+  /* SECTIONS */
   .section {
-    padding: 96px 40px;
+    padding: 88px 40px;
     max-width: 1100px;
     margin: 0 auto;
   }
@@ -351,66 +241,61 @@
   .section-eyebrow {
     font-size: 12px;
     font-weight: 600;
-    letter-spacing: 1.8px;
+    letter-spacing: 1.5px;
     text-transform: uppercase;
     color: var(--blue);
-    margin-bottom: 16px;
+    margin-bottom: 12px;
   }
 
   .section-title {
-    font-family: Georgia, 'Times New Roman', serif;
-    font-size: clamp(28px, 4vw, 44px);
-    font-weight: 700;
+    font-size: clamp(26px, 3.5vw, 40px);
+    font-weight: 800;
     color: var(--text);
     letter-spacing: -0.8px;
     line-height: 1.15;
-    text-wrap: balance;
-    max-width: 560px;
-    margin-bottom: 56px;
+    max-width: 520px;
+    margin-bottom: 48px;
   }
 
+  /* FEATURES GRID */
   .features-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 24px;
+    gap: 16px;
   }
 
   .feature-card {
     background: var(--surface);
     border: 1px solid var(--border);
-    border-radius: 14px;
-    padding: 28px;
+    border-left: 4px solid var(--blue);
+    border-radius: 12px;
+    padding: 24px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
     transition: transform 0.15s, box-shadow 0.15s;
   }
 
   .feature-card:hover {
     transform: translateY(-2px);
-    box-shadow: 0 8px 24px rgba(37,99,235,0.08);
+    box-shadow: 0 6px 20px rgba(37,99,235,0.09);
   }
+
+  .feature-card:nth-child(2) { border-left-color: var(--green); }
+  .feature-card:nth-child(3) { border-left-color: var(--purple); }
+  .feature-card:nth-child(4) { border-left-color: var(--teal); }
+  .feature-card:nth-child(5) { border-left-color: var(--amber); }
+  .feature-card:nth-child(6) { border-left-color: var(--red); }
 
   .feature-icon {
-    width: 44px; height: 44px;
-    border-radius: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 22px;
-    margin-bottom: 16px;
-    background: var(--blue-light);
+    font-size: 26px;
+    margin-bottom: 14px;
+    display: block;
   }
-
-  .feature-card:nth-child(2) .feature-icon { background: #F0FDF4; }
-  .feature-card:nth-child(3) .feature-icon { background: var(--gold-light); }
-  .feature-card:nth-child(4) .feature-icon { background: #F5F3FF; }
-  .feature-card:nth-child(5) .feature-icon { background: #F0FDFA; }
-  .feature-card:nth-child(6) .feature-icon { background: #FFF7ED; }
 
   .feature-title {
     font-size: 16px;
     font-weight: 700;
     color: var(--text);
     margin-bottom: 8px;
-    letter-spacing: -0.2px;
   }
 
   .feature-desc {
@@ -419,96 +304,116 @@
     line-height: 1.65;
   }
 
+  /* TOUR */
+  .tour-section {
+    background: #fff;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    padding: 88px 40px;
+  }
+
+  .tour-section-inner { max-width: 860px; margin: 0 auto; }
+
+  .tour-slide {
+    min-width: 100%;
+    padding: 56px 48px;
+    text-align: center;
+    border-radius: 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 1px solid var(--border);
+  }
+
+  .tour-emoji { font-size: 56px; margin-bottom: 20px; line-height: 1; }
+
+  .tour-title {
+    font-size: clamp(22px, 3vw, 30px);
+    font-weight: 800;
+    margin-bottom: 14px;
+    letter-spacing: -0.5px;
+    color: var(--blue);
+  }
+
+  .tour-body {
+    font-size: 16px;
+    color: var(--text-mid);
+    max-width: 460px;
+    line-height: 1.65;
+  }
+
   /* PRICING */
   .pricing-section {
-    background: var(--navy);
-    padding: 96px 40px;
+    background: var(--bg);
+    padding: 88px 40px;
+    border-top: 1px solid var(--border);
   }
 
-  .pricing-inner {
-    max-width: 1000px;
-    margin: 0 auto;
-  }
+  .pricing-inner { max-width: 1000px; margin: 0 auto; }
 
-  .pricing-header {
-    text-align: center;
-    margin-bottom: 56px;
-  }
-
-  .pricing-eyebrow {
-    font-size: 12px;
-    font-weight: 600;
-    letter-spacing: 1.8px;
-    text-transform: uppercase;
-    color: var(--gold);
-    margin-bottom: 16px;
-  }
+  .pricing-header { text-align: center; margin-bottom: 48px; }
 
   .pricing-title {
-    font-family: Georgia, 'Times New Roman', serif;
-    font-size: clamp(28px, 4vw, 44px);
-    font-weight: 700;
-    color: #fff;
+    font-size: clamp(26px, 3.5vw, 40px);
+    font-weight: 800;
+    color: var(--text);
     letter-spacing: -0.8px;
-    line-height: 1.15;
-    margin-bottom: 16px;
+    margin-bottom: 12px;
   }
 
-  .pricing-sub {
-    color: rgba(255,255,255,0.55);
-    font-size: 16px;
-    max-width: 420px;
-    margin: 0 auto;
-  }
+  .pricing-sub { color: var(--text-mid); font-size: 16px; }
 
   .pricing-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 20px;
+    gap: 16px;
   }
 
   .pricing-card {
-    background: rgba(255,255,255,0.04);
-    border: 1px solid rgba(255,255,255,0.1);
-    border-radius: 16px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-top: 4px solid var(--border);
+    border-radius: 14px;
     padding: 32px 28px;
     position: relative;
-    transition: border-color 0.15s;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    transition: transform 0.15s, box-shadow 0.15s;
   }
 
-  .pricing-card:hover { border-color: rgba(245,166,35,0.3); }
+  .pricing-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.09);
+  }
 
   .pricing-card.featured {
-    background: rgba(245,166,35,0.06);
-    border-color: rgba(245,166,35,0.4);
+    border-top-color: var(--blue);
+    box-shadow: 0 4px 24px rgba(37,99,235,0.12);
   }
 
   .pricing-badge {
-    position: absolute;
-    top: -12px; left: 50%;
-    transform: translateX(-50%);
-    background: var(--gold);
-    color: var(--navy);
+    display: inline-block;
+    background: var(--blue-light);
+    color: var(--blue);
     font-size: 11px;
     font-weight: 700;
-    padding: 4px 14px;
+    padding: 4px 12px;
     border-radius: 20px;
     letter-spacing: 0.3px;
-    white-space: nowrap;
+    margin-bottom: 16px;
   }
 
   .pricing-tier {
     font-size: 13px;
     font-weight: 600;
-    color: rgba(255,255,255,0.5);
+    color: var(--text-mid);
     text-transform: uppercase;
-    letter-spacing: 1.2px;
-    margin-bottom: 12px;
+    letter-spacing: 1px;
+    margin-bottom: 6px;
   }
 
   .pricing-participants {
     font-size: 14px;
-    color: var(--gold);
+    color: var(--blue);
     font-weight: 600;
     margin-bottom: 20px;
   }
@@ -516,32 +421,24 @@
   .pricing-price {
     display: flex;
     align-items: baseline;
-    gap: 4px;
-    margin-bottom: 6px;
+    gap: 3px;
+    margin-bottom: 4px;
   }
 
-  .price-dollar { font-size: 20px; color: rgba(255,255,255,0.7); font-weight: 600; margin-top: 4px; }
-  .price-amount { font-family: Georgia, serif; font-size: 52px; font-weight: 700; color: #fff; letter-spacing: -2px; font-variant-numeric: tabular-nums; }
-  .price-period { font-size: 14px; color: rgba(255,255,255,0.4); }
+  .price-dollar { font-size: 20px; color: var(--text-mid); font-weight: 600; margin-top: 6px; }
+  .price-amount { font-size: 52px; font-weight: 800; color: var(--text); letter-spacing: -2px; }
+  .price-period { font-size: 14px; color: var(--text-light); }
 
-  .pricing-trial {
-    font-size: 13px;
-    color: rgba(255,255,255,0.4);
-    margin-bottom: 28px;
-  }
+  .pricing-trial { font-size: 13px; color: var(--text-light); margin-bottom: 24px; }
 
-  .pricing-divider {
-    height: 1px;
-    background: rgba(255,255,255,0.08);
-    margin-bottom: 24px;
-  }
+  .pricing-divider { height: 1px; background: var(--border); margin-bottom: 20px; }
 
   .pricing-features {
     list-style: none;
     display: flex;
     flex-direction: column;
-    gap: 12px;
-    margin-bottom: 32px;
+    gap: 10px;
+    margin-bottom: 28px;
   }
 
   .pricing-features li {
@@ -549,133 +446,111 @@
     align-items: flex-start;
     gap: 10px;
     font-size: 14px;
-    color: rgba(255,255,255,0.7);
+    color: var(--text-mid);
     line-height: 1.4;
   }
 
-  .check {
-    color: var(--gold);
-    font-size: 14px;
-    font-weight: 700;
-    flex-shrink: 0;
-    margin-top: 1px;
-  }
+  .check { color: var(--green); font-size: 14px; font-weight: 700; flex-shrink: 0; margin-top: 1px; }
 
   .pricing-btn {
     display: block;
     text-align: center;
-    padding: 14px;
+    padding: 13px;
     border-radius: 10px;
-    font-weight: 700;
+    font-weight: 600;
     font-size: 15px;
     text-decoration: none;
-    border: 1px solid rgba(255,255,255,0.2);
-    color: rgba(255,255,255,0.8);
+    border: 1px solid var(--border);
+    color: var(--text-mid);
     transition: border-color 0.15s, color 0.15s;
   }
 
-  .pricing-btn:hover { border-color: rgba(255,255,255,0.5); color: #fff; }
+  .pricing-btn:hover { border-color: var(--blue); color: var(--blue); }
 
   .pricing-card.featured .pricing-btn {
-    background: var(--gold);
-    color: var(--navy);
-    border-color: var(--gold);
+    background: var(--blue);
+    color: #fff;
+    border-color: var(--blue);
   }
 
   .pricing-card.featured .pricing-btn:hover { opacity: 0.9; }
 
   /* CTA STRIP */
   .cta-strip {
-    padding: 96px 40px;
+    background: var(--blue-light);
+    border-top: 1px solid #DBEAFE;
+    padding: 88px 40px;
     text-align: center;
-    max-width: 700px;
-    margin: 0 auto;
   }
 
   .cta-strip h2 {
-    font-family: Georgia, 'Times New Roman', serif;
-    font-size: clamp(28px, 4vw, 42px);
-    font-weight: 700;
+    font-size: clamp(26px, 3.5vw, 38px);
+    font-weight: 800;
     color: var(--text);
     letter-spacing: -0.8px;
-    text-wrap: balance;
-    margin-bottom: 16px;
+    margin-bottom: 14px;
   }
 
   .cta-strip p {
     color: var(--text-mid);
     font-size: 17px;
-    margin-bottom: 36px;
+    margin-bottom: 32px;
     line-height: 1.6;
+    max-width: 480px;
+    margin-left: auto;
+    margin-right: auto;
   }
 
   /* FOOTER */
   footer {
-    background: var(--navy);
-    padding: 40px;
+    background: var(--text);
+    padding: 36px 40px;
     display: flex;
     align-items: center;
     justify-content: space-between;
     flex-wrap: wrap;
     gap: 20px;
-    border-top: 1px solid rgba(255,255,255,0.06);
   }
 
-  .footer-logo {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    text-decoration: none;
-  }
+  .footer-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
 
   .footer-logo-mark {
-    width: 28px; height: 28px;
-    background: var(--gold);
-    border-radius: 7px;
+    width: 30px; height: 30px;
+    background: var(--blue);
+    border-radius: 8px;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-family: Georgia, serif;
-    font-size: 15px;
+    font-size: 16px;
     font-weight: 800;
-    color: var(--navy);
-    letter-spacing: -1px;
-  }
-
-  .footer-logo-text {
-    font-family: Georgia, serif;
-    font-size: 17px;
-    font-weight: 700;
     color: #fff;
   }
 
-  .footer-links {
-    display: flex;
-    gap: 28px;
-    flex-wrap: wrap;
-  }
+  .footer-logo-text { font-size: 17px; font-weight: 700; color: #fff; }
+
+  .footer-links { display: flex; gap: 24px; flex-wrap: wrap; }
 
   .footer-links a {
     font-size: 13px;
-    color: rgba(255,255,255,0.4);
+    color: rgba(255,255,255,0.45);
     text-decoration: none;
     transition: color 0.15s;
   }
 
-  .footer-links a:hover { color: rgba(255,255,255,0.75); }
+  .footer-links a:hover { color: rgba(255,255,255,0.8); }
 
-  .footer-copy {
-    font-size: 12px;
-    color: rgba(255,255,255,0.25);
-  }
+  .footer-copy { font-size: 12px; color: rgba(255,255,255,0.25); }
 
   @media (max-width: 640px) {
     nav { padding: 0 20px; }
-    .hero { padding: 120px 20px 80px; }
-    .trust-bar { gap: 24px; padding: 20px; }
+    .hero { padding: 100px 20px 64px; }
+    .trust-bar { gap: 20px; padding: 16px 20px; }
     .section { padding: 64px 20px; }
+    .tour-section { padding: 64px 20px; }
     .pricing-section { padding: 64px 20px; }
-    footer { padding: 32px 20px; flex-direction: column; align-items: flex-start; }
+    .cta-strip { padding: 64px 20px; }
+    footer { padding: 28px 20px; flex-direction: column; align-items: flex-start; }
+    .tour-slide { padding: 40px 24px; }
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -694,8 +569,8 @@
 
 <!-- HERO -->
 <section class="hero">
-  <div class="hero-eyebrow">iOS App — Available now</div>
-  <h1>The <em>dedicated</em> app for NDIS sole traders</h1>
+  <div class="hero-eyebrow">iOS & Android — Available now</div>
+  <h1>The <span>dedicated</span> app for NDIS sole traders</h1>
   <p class="hero-sub">Clock shifts, manage participants, generate invoices and stay compliant — built for support workers, not accountants.</p>
   <div class="hero-actions">
     <a href="#" class="btn-primary">
@@ -712,17 +587,17 @@
 
         <!-- status bar -->
         <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;padding:0 2px;">
-          <span style="font-size:7px;font-weight:700;color:#111;">2:29</span>
-          <span style="font-size:7px;color:#111;">▲▲ ◀ 61%</span>
+          <span style="font-size:7px;font-weight:700;color:#111;">9:41</span>
+          <span style="font-size:7px;color:#111;">▲▲ ◀ 86%</span>
         </div>
 
         <!-- greeting -->
         <div style="display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:8px;">
           <div>
-            <div style="font-size:7px;color:#6B7280;">Good afternoon,</div>
+            <div style="font-size:7px;color:#6B7280;">Good morning,</div>
             <div style="font-size:12px;font-weight:800;color:#111;">Mat 👋</div>
           </div>
-          <div style="width:20px;height:20px;border-radius:10px;background:#EFF6FF;display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:700;color:#2563EB;">M</div>
+          <div style="width:22px;height:22px;border-radius:11px;background:#EFF6FF;display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:700;color:#2563EB;">M</div>
         </div>
 
         <!-- clock on -->
@@ -732,24 +607,21 @@
 
         <!-- stat cards -->
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:5px;margin-bottom:8px;">
-          <div style="background:#EFF6FF;border-radius:8px;padding:7px;">
+          <div style="background:#fff;border-radius:8px;padding:7px;border-left:3px solid #2563EB;box-shadow:0 1px 3px rgba(0,0,0,0.06);">
             <div style="font-size:16px;font-weight:800;color:#2563EB;">6</div>
-            <div style="font-size:6px;color:#2563EB;font-weight:600;margin-top:1px;">Shifts this week</div>
-            <div style="font-size:5px;color:#93C5FD;margin-top:2px;">Tap to view →</div>
+            <div style="font-size:6px;color:#6B7280;font-weight:500;margin-top:1px;">Shifts this week</div>
           </div>
-          <div style="background:#F0FDF4;border-radius:8px;padding:7px;">
+          <div style="background:#fff;border-radius:8px;padding:7px;border-left:3px solid #16A34A;box-shadow:0 1px 3px rgba(0,0,0,0.06);">
             <div style="font-size:16px;font-weight:800;color:#16A34A;">31.4</div>
-            <div style="font-size:6px;color:#16A34A;font-weight:600;margin-top:1px;">Hours this week</div>
+            <div style="font-size:6px;color:#6B7280;font-weight:500;margin-top:1px;">Hours this week</div>
           </div>
-          <div style="background:#FFFBEB;border-radius:8px;padding:7px;">
-            <div style="font-size:16px;font-weight:800;color:#D97706;">1</div>
-            <div style="font-size:6px;color:#D97706;font-weight:600;margin-top:1px;">Active participants</div>
-            <div style="font-size:5px;color:#FCD34D;margin-top:2px;">Tap to view →</div>
+          <div style="background:#fff;border-radius:8px;padding:7px;border-left:3px solid #D97706;box-shadow:0 1px 3px rgba(0,0,0,0.06);">
+            <div style="font-size:16px;font-weight:800;color:#D97706;">3</div>
+            <div style="font-size:6px;color:#6B7280;font-weight:500;margin-top:1px;">Participants</div>
           </div>
-          <div style="background:#FEF2F2;border-radius:8px;padding:7px;">
+          <div style="background:#fff;border-radius:8px;padding:7px;border-left:3px solid #DC2626;box-shadow:0 1px 3px rgba(0,0,0,0.06);">
             <div style="font-size:16px;font-weight:800;color:#DC2626;">2</div>
-            <div style="font-size:6px;color:#DC2626;font-weight:600;margin-top:1px;">Draft invoices</div>
-            <div style="font-size:5px;color:#FCA5A5;margin-top:2px;">Tap to view →</div>
+            <div style="font-size:6px;color:#6B7280;font-weight:500;margin-top:1px;">Draft invoices</div>
           </div>
         </div>
 
@@ -764,47 +636,35 @@
             <div style="font-size:12px;margin-bottom:2px;">👤</div>
             <div style="font-size:5.5px;font-weight:700;color:#16A34A;">Add participant</div>
           </div>
-          <div style="background:#FFFBEB;border-radius:7px;padding:6px 3px;text-align:center;">
-            <div style="font-size:12px;margin-bottom:2px;">💰</div>
-            <div style="font-size:5.5px;font-weight:700;color:#D97706;">New invoice</div>
-          </div>
-          <div style="background:#F0FDF4;border-radius:7px;padding:6px 3px;text-align:center;">
-            <div style="font-size:12px;margin-bottom:2px;">✅</div>
-            <div style="font-size:5.5px;font-weight:700;color:#16A34A;">Compliance</div>
-          </div>
           <div style="background:#F5F3FF;border-radius:7px;padding:6px 3px;text-align:center;">
-            <div style="font-size:12px;margin-bottom:2px;">📤</div>
-            <div style="font-size:5.5px;font-weight:700;color:#7C3AED;">Audit pack</div>
+            <div style="font-size:12px;margin-bottom:2px;">💰</div>
+            <div style="font-size:5.5px;font-weight:700;color:#7C3AED;">New invoice</div>
+          </div>
+          <div style="background:#F0FDFA;border-radius:7px;padding:6px 3px;text-align:center;">
+            <div style="font-size:12px;margin-bottom:2px;">✅</div>
+            <div style="font-size:5.5px;font-weight:700;color:#0D9488;">Compliance</div>
           </div>
           <div style="background:#FFF7ED;border-radius:7px;padding:6px 3px;text-align:center;">
-            <div style="font-size:12px;margin-bottom:2px;">🧾</div>
-            <div style="font-size:5.5px;font-weight:700;color:#C2410C;">Expenses</div>
-          </div>
-          <div style="background:#EFF6FF;border-radius:7px;padding:6px 3px;text-align:center;">
-            <div style="font-size:12px;margin-bottom:2px;">📅</div>
-            <div style="font-size:5.5px;font-weight:700;color:#2563EB;">Calendar</div>
-          </div>
-          <div style="background:#F0FDF4;border-radius:7px;padding:6px 3px;text-align:center;">
-            <div style="font-size:12px;margin-bottom:2px;">👥</div>
-            <div style="font-size:5.5px;font-weight:700;color:#16A34A;">Participants</div>
+            <div style="font-size:12px;margin-bottom:2px;">📤</div>
+            <div style="font-size:5.5px;font-weight:700;color:#C2410C;">Audit pack</div>
           </div>
           <div style="background:#FFFBEB;border-radius:7px;padding:6px 3px;text-align:center;">
-            <div style="font-size:12px;margin-bottom:2px;">📊</div>
-            <div style="font-size:5.5px;font-weight:700;color:#D97706;">Revenue</div>
+            <div style="font-size:12px;margin-bottom:2px;">🧾</div>
+            <div style="font-size:5.5px;font-weight:700;color:#D97706;">Expenses</div>
           </div>
         </div>
 
         <!-- bottom bar -->
-        <div style="display:flex;align-items:center;justify-content:space-between;margin-top:8px;padding-top:6px;border-top:1px solid #E5E7EB;">
-          <div style="text-align:center;width:36px;">
-            <div style="font-size:10px;color:#DC2626;">?</div>
+        <div style="display:flex;align-items:center;justify-content:space-around;margin-top:8px;padding-top:6px;border-top:1px solid #E5E7EB;">
+          <div style="text-align:center;">
+            <div style="font-size:10px;">❓</div>
             <div style="font-size:5px;color:#9CA3AF;">Help</div>
           </div>
-          <div style="background:#2563EB;border-radius:16px;padding:5px 14px;text-align:center;">
+          <div style="background:#2563EB;border-radius:16px;padding:5px 16px;text-align:center;">
             <div style="font-size:10px;">🏠</div>
             <div style="font-size:5px;color:#fff;font-weight:700;">Home</div>
           </div>
-          <div style="text-align:center;width:36px;">
+          <div style="text-align:center;">
             <div style="font-size:10px;">🔒</div>
             <div style="font-size:5px;color:#9CA3AF;">Privacy</div>
           </div>
@@ -816,129 +676,12 @@
 </section>
 
 <!-- TRUST BAR -->
-<div class="trust-bar" style="background:var(--navy);">
+<div class="trust-bar">
   <div class="trust-item"><div class="trust-dot"></div>NDIS 2026–27 pricing built in</div>
   <div class="trust-item"><div class="trust-dot"></div>Face ID protected</div>
   <div class="trust-item"><div class="trust-dot"></div>Audit-ready reports</div>
   <div class="trust-item"><div class="trust-dot"></div>No accountant needed</div>
 </div>
-
-<!-- TOUR -->
-<section style="padding:96px 40px;background:var(--bg);">
-  <div style="max-width:900px;margin:0 auto;">
-    <div style="text-align:center;margin-bottom:48px;">
-      <div class="section-eyebrow" style="text-align:center;">App tour</div>
-      <h2 class="section-title" style="margin:0 auto;text-align:center;">See how it works</h2>
-    </div>
-
-    <div style="position:relative;">
-      <!-- slides -->
-      <div id="tour-track" style="overflow:hidden;border-radius:20px;">
-        <div id="tour-inner" style="display:flex;transition:transform 0.4s cubic-bezier(.4,0,.2,1);">
-
-          <div class="tour-slide" style="background:#EFF6FF;">
-            <div class="tour-emoji">🌿</div>
-            <h3 class="tour-title" style="color:#2563EB;">Welcome to Wattle</h3>
-            <p class="tour-body">The support worker app built for the NDIS. Everything you need, in one place.</p>
-          </div>
-
-          <div class="tour-slide" style="background:#F0FDF4;">
-            <div class="tour-emoji">⏱️</div>
-            <h3 class="tour-title" style="color:#16A34A;">Track Your Shifts</h3>
-            <p class="tour-body">Clock on and off with a tap. Log visit notes, mileage, and participant signatures as you go.</p>
-          </div>
-
-          <div class="tour-slide" style="background:#FFF7ED;">
-            <div class="tour-emoji">👤</div>
-            <h3 class="tour-title" style="color:#EA580C;">Manage Participants</h3>
-            <p class="tour-body">Store profiles, NDIS goals, emergency contacts, and health details — all securely encrypted.</p>
-          </div>
-
-          <div class="tour-slide" style="background:#FDF4FF;">
-            <div class="tour-emoji">🧾</div>
-            <h3 class="tour-title" style="color:#9333EA;">Invoice in Seconds</h3>
-            <p class="tour-body">Create NDIS-compliant invoices for any support category, including STA and remote loadings. Email them as PDFs straight from the app.</p>
-          </div>
-
-          <div class="tour-slide" style="background:#FFFBEB;">
-            <div class="tour-emoji">📋</div>
-            <h3 class="tour-title" style="color:#D97706;">Stay Compliant</h3>
-            <p class="tour-body">Track your certifications, renewals, and policy documents. Never let a credential lapse again.</p>
-          </div>
-
-          <div class="tour-slide" style="background:#EFF6FF;">
-            <div class="tour-emoji">🚀</div>
-            <h3 class="tour-title" style="color:#2563EB;">You're Ready</h3>
-            <p class="tour-body">Create your free account to get started. Your data is private, encrypted, and stays yours.</p>
-            <a href="#" class="btn-primary" style="margin-top:24px;display:inline-flex;">Download on App Store</a>
-          </div>
-
-        </div>
-      </div>
-
-      <!-- prev / next -->
-      <button onclick="tourNav(-1)" id="tour-prev" style="position:absolute;left:-20px;top:50%;transform:translateY(-50%);width:44px;height:44px;border-radius:22px;border:none;background:var(--surface);box-shadow:0 2px 12px rgba(0,0,0,0.12);cursor:pointer;font-size:20px;display:flex;align-items:center;justify-content:center;opacity:0.4;">‹</button>
-      <button onclick="tourNav(1)" id="tour-next" style="position:absolute;right:-20px;top:50%;transform:translateY(-50%);width:44px;height:44px;border-radius:22px;border:none;background:var(--surface);box-shadow:0 2px 12px rgba(0,0,0,0.12);cursor:pointer;font-size:20px;display:flex;align-items:center;justify-content:center;">›</button>
-    </div>
-
-    <!-- dots -->
-    <div id="tour-dots" style="display:flex;justify-content:center;gap:8px;margin-top:24px;"></div>
-  </div>
-</section>
-
-<style>
-  .tour-slide {
-    min-width:100%;
-    padding:56px 48px;
-    text-align:center;
-    border-radius:20px;
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-  }
-  .tour-emoji { font-size:64px;margin-bottom:20px;line-height:1; }
-  .tour-title { font-family:Georgia,serif;font-size:clamp(22px,3vw,32px);font-weight:700;margin-bottom:16px;letter-spacing:-0.5px; }
-  .tour-body { font-size:17px;color:var(--text-mid);max-width:500px;line-height:1.65; }
-  @media(max-width:640px){
-    .tour-slide{padding:40px 24px;}
-    .tour-body{font-size:15px;}
-  }
-</style>
-
-<script>
-  (function(){
-    var current = 0;
-    var total = 6;
-    var inner = document.getElementById('tour-inner');
-    var dotsEl = document.getElementById('tour-dots');
-    var prev = document.getElementById('tour-prev');
-    var next = document.getElementById('tour-next');
-
-    // build dots
-    for(var i=0;i<total;i++){
-      var d=document.createElement('div');
-      d.style.cssText='width:8px;height:8px;border-radius:4px;background:#CBD5E0;transition:all 0.25s;cursor:pointer;';
-      d.setAttribute('data-i',i);
-      d.onclick=function(){goTo(+this.getAttribute('data-i'));};
-      dotsEl.appendChild(d);
-    }
-
-    function goTo(n){
-      current=Math.max(0,Math.min(total-1,n));
-      inner.style.transform='translateX(-'+current*100+'%)';
-      var dots=dotsEl.children;
-      for(var i=0;i<dots.length;i++){
-        dots[i].style.background=i===current?'var(--blue)':'#CBD5E0';
-        dots[i].style.width=i===current?'24px':'8px';
-      }
-      prev.style.opacity=current===0?'0.3':'1';
-      next.style.opacity=current===total-1?'0.3':'1';
-    }
-
-    window.tourNav=function(dir){goTo(current+dir);};
-    goTo(0);
-  })();
-</script>
 
 <!-- FEATURES -->
 <section class="section" id="features">
@@ -946,43 +689,133 @@
   <h2 class="section-title">Everything a sole trader needs, nothing they don't</h2>
   <div class="features-grid">
     <div class="feature-card">
-      <div class="feature-icon">🕐</div>
+      <span class="feature-icon">🕐</span>
       <div class="feature-title">Clock on & off shifts</div>
       <div class="feature-desc">Start and end shifts with a tap. Elapsed time tracks in real time. Overnight and sleepover shifts handled automatically.</div>
     </div>
     <div class="feature-card">
-      <div class="feature-icon">👥</div>
+      <span class="feature-icon">👥</span>
       <div class="feature-title">Participant management</div>
       <div class="feature-desc">Store participant details, NDIS numbers, emergency contacts and support goals in one secure place.</div>
     </div>
     <div class="feature-card">
-      <div class="feature-icon">🧾</div>
+      <span class="feature-icon">🧾</span>
       <div class="feature-title">Invoice generation</div>
       <div class="feature-desc">Generate NDIS-compliant invoices with correct support item codes and 2026–27 pricing. Email them directly from the app.</div>
     </div>
     <div class="feature-card">
-      <div class="feature-icon">📋</div>
+      <span class="feature-icon">📋</span>
       <div class="feature-title">Incident & risk register</div>
       <div class="feature-desc">Log incidents, complaints and risks as they happen. Exportable reports keep you audit-ready at any time.</div>
     </div>
     <div class="feature-card">
-      <div class="feature-icon">✅</div>
+      <span class="feature-icon">✅</span>
       <div class="feature-title">Compliance & certifications</div>
       <div class="feature-desc">Track NDIS Worker Screening, First Aid, Police Checks, Driver's Licence and more. Get alerted before they expire.</div>
     </div>
     <div class="feature-card">
-      <div class="feature-icon">📊</div>
+      <span class="feature-icon">📊</span>
       <div class="feature-title">Revenue & expenses</div>
       <div class="feature-desc">See your earnings at a glance, track business expenses and keep receipts — all in one place for tax time.</div>
     </div>
   </div>
 </section>
 
+<!-- TOUR -->
+<section class="tour-section">
+  <div class="tour-section-inner">
+    <div style="text-align:center;margin-bottom:48px;">
+      <div class="section-eyebrow" style="text-align:center;">App tour</div>
+      <h2 style="font-size:clamp(26px,3.5vw,40px);font-weight:800;color:var(--text);letter-spacing:-0.8px;">See how it works</h2>
+    </div>
+
+    <div style="position:relative;">
+      <div id="tour-track" style="overflow:hidden;border-radius:16px;">
+        <div id="tour-inner" style="display:flex;transition:transform 0.4s cubic-bezier(.4,0,.2,1);">
+
+          <div class="tour-slide" style="background:var(--blue-light);border-color:#DBEAFE;">
+            <div class="tour-emoji">🌿</div>
+            <h3 class="tour-title" style="color:var(--blue);">Welcome to Wattle</h3>
+            <p class="tour-body">The support worker app built for the NDIS. Everything you need, in one place.</p>
+          </div>
+
+          <div class="tour-slide" style="background:var(--green-light);border-color:#BBF7D0;">
+            <div class="tour-emoji">⏱️</div>
+            <h3 class="tour-title" style="color:var(--green);">Track Your Shifts</h3>
+            <p class="tour-body">Clock on and off with a tap. Log visit notes, mileage, and participant signatures as you go.</p>
+          </div>
+
+          <div class="tour-slide" style="background:var(--amber-light);border-color:#FDE68A;">
+            <div class="tour-emoji">👤</div>
+            <h3 class="tour-title" style="color:var(--amber);">Manage Participants</h3>
+            <p class="tour-body">Store profiles, NDIS goals, emergency contacts, and health details — all securely encrypted.</p>
+          </div>
+
+          <div class="tour-slide" style="background:var(--purple-light);border-color:#DDD6FE;">
+            <div class="tour-emoji">🧾</div>
+            <h3 class="tour-title" style="color:var(--purple);">Invoice in Seconds</h3>
+            <p class="tour-body">Create NDIS-compliant invoices for any support category, including STA and remote loadings. Email them as PDFs straight from the app.</p>
+          </div>
+
+          <div class="tour-slide" style="background:var(--teal-light);border-color:#99F6E4;">
+            <div class="tour-emoji">📋</div>
+            <h3 class="tour-title" style="color:var(--teal);">Stay Compliant</h3>
+            <p class="tour-body">Track your certifications, renewals, and policy documents. Never let a credential lapse again.</p>
+          </div>
+
+          <div class="tour-slide" style="background:var(--blue-light);border-color:#DBEAFE;">
+            <div class="tour-emoji">🚀</div>
+            <h3 class="tour-title" style="color:var(--blue);">You're Ready</h3>
+            <p class="tour-body">Create your free account to get started. Your data is private, encrypted, and stays yours.</p>
+            <a href="#" class="btn-primary" style="margin-top:24px;">Download on App Store</a>
+          </div>
+
+        </div>
+      </div>
+
+      <button onclick="tourNav(-1)" id="tour-prev" style="position:absolute;left:-20px;top:50%;transform:translateY(-50%);width:44px;height:44px;border-radius:22px;border:1px solid var(--border);background:#fff;box-shadow:0 2px 8px rgba(0,0,0,0.08);cursor:pointer;font-size:20px;display:flex;align-items:center;justify-content:center;color:var(--text-mid);opacity:0.4;">‹</button>
+      <button onclick="tourNav(1)" id="tour-next" style="position:absolute;right:-20px;top:50%;transform:translateY(-50%);width:44px;height:44px;border-radius:22px;border:1px solid var(--border);background:#fff;box-shadow:0 2px 8px rgba(0,0,0,0.08);cursor:pointer;font-size:20px;display:flex;align-items:center;justify-content:center;color:var(--text-mid);">›</button>
+    </div>
+
+    <div id="tour-dots" style="display:flex;justify-content:center;gap:8px;margin-top:24px;"></div>
+  </div>
+</section>
+
+<script>
+  (function(){
+    var current = 0, total = 6;
+    var inner = document.getElementById('tour-inner');
+    var dotsEl = document.getElementById('tour-dots');
+    var prev = document.getElementById('tour-prev');
+    var next = document.getElementById('tour-next');
+    for(var i=0;i<total;i++){
+      var d=document.createElement('div');
+      d.style.cssText='width:8px;height:8px;border-radius:4px;background:#E5E7EB;transition:all 0.25s;cursor:pointer;';
+      d.setAttribute('data-i',i);
+      d.onclick=function(){goTo(+this.getAttribute('data-i'));};
+      dotsEl.appendChild(d);
+    }
+    function goTo(n){
+      current=Math.max(0,Math.min(total-1,n));
+      inner.style.transform='translateX(-'+current*100+'%)';
+      var dots=dotsEl.children;
+      for(var i=0;i<dots.length;i++){
+        dots[i].style.background=i===current?'#2563EB':'#E5E7EB';
+        dots[i].style.width=i===current?'24px':'8px';
+      }
+      prev.style.opacity=current===0?'0.3':'1';
+      next.style.opacity=current===total-1?'0.3':'1';
+    }
+    window.tourNav=function(dir){goTo(current+dir);};
+    goTo(0);
+  })();
+</script>
+
 <!-- PRICING -->
 <section class="pricing-section" id="pricing">
   <div class="pricing-inner">
     <div class="pricing-header">
-      <div class="pricing-eyebrow">Simple pricing</div>
+      <div class="section-eyebrow" style="text-align:center;">Simple pricing</div>
       <h2 class="pricing-title">Grows with your caseload</h2>
       <p class="pricing-sub">30-day free trial, no credit card required. Cancel any time.</p>
     </div>
@@ -1057,7 +890,7 @@
 <div class="cta-strip">
   <h2>Built by a support worker, for support workers</h2>
   <p>Wattle was designed from real experience in the NDIS sector — not by a software company guessing at your needs.</p>
-  <a href="#" class="btn-primary" style="display:inline-flex; background:var(--blue); color:#fff;">
+  <a href="#" class="btn-primary">
     <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
     Download on App Store
   </a>
@@ -1070,8 +903,8 @@
     <span class="footer-logo-text">Wattle</span>
   </a>
   <div class="footer-links">
-    <a href="#">Privacy Policy</a>
-    <a href="#">Contact</a>
+    <a href="privacy.html">Privacy Policy</a>
+    <a href="mailto:matlacey1979@gmail.com">Contact</a>
     <a href="mailto:matlacey1979@gmail.com">Support</a>
   </div>
   <div class="footer-copy">© 2026 Wattle. All rights reserved.</div>
