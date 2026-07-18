@@ -1,4 +1,5 @@
 ﻿
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>MyWattle — Dedicated NDIS Sole Trader App</title>
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -543,15 +544,53 @@
   .footer-copy { font-size: 12px; color: rgba(255,255,255,0.25); }
 
   @media (max-width: 640px) {
-    nav { padding: 0 20px; }
-    .hero { padding: 100px 20px 64px; }
-    .trust-bar { gap: 20px; padding: 16px 20px; }
-    .section { padding: 64px 20px; }
-    .tour-section { padding: 64px 20px; }
-    .pricing-section { padding: 64px 20px; }
-    .cta-strip { padding: 64px 20px; }
-    footer { padding: 28px 20px; flex-direction: column; align-items: flex-start; }
-    .tour-slide { padding: 40px 24px; }
+    /* Layout & spacing */
+    nav { padding: 0 16px; height: 56px; }
+    .nav-logo-text { font-size: 17px; }
+    .nav-cta { font-size: 13px; padding: 8px 16px; }
+    .hero { padding: 84px 20px 56px; }
+    .trust-bar { gap: 16px; padding: 14px 20px; flex-direction: column; align-items: flex-start; }
+    .section { padding: 56px 20px; }
+    .tour-section { padding: 56px 20px; }
+    .pricing-section { padding: 56px 20px; }
+    .cta-strip { padding: 56px 20px; }
+    footer { padding: 28px 20px; flex-direction: column; align-items: flex-start; gap: 16px; }
+
+    /* Hero text */
+    .hero-eyebrow { font-size: 11px; }
+    .hero-sub { font-size: 16px; }
+    .btn-primary { font-size: 15px; padding: 13px 22px; }
+    .btn-secondary { font-size: 14px; padding: 12px 18px; }
+
+    /* Features grid — single column on mobile */
+    .features-grid { grid-template-columns: 1fr; }
+    .feature-card { padding: 20px; }
+    .feature-title { font-size: 15px; }
+    .feature-desc { font-size: 14px; }
+
+    /* Tour */
+    .tour-slide { padding: 36px 20px; }
+    .tour-emoji { font-size: 44px; }
+    .tour-body { font-size: 15px; }
+
+    /* Pricing — single column on mobile */
+    .pricing-grid { grid-template-columns: 1fr; }
+    .pricing-card { padding: 24px 20px; }
+    .price-amount { font-size: 44px; }
+    .pricing-features li { font-size: 14px; }
+    .pricing-btn { font-size: 15px; }
+
+    /* Section titles */
+    .section-title { margin-bottom: 32px; }
+    .section-eyebrow { font-size: 11px; }
+
+    /* CTA strip */
+    .cta-strip p { font-size: 15px; }
+    .hero-actions { gap: 10px; }
+
+    /* Footer */
+    .footer-links { gap: 16px; }
+    .footer-copy { font-size: 11px; }
   }
 
   @media (prefers-reduced-motion: reduce) {
